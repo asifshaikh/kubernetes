@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+spec:
+  containers:
+    - name: my-container-1
+      image: busybox
+      env:
+        - name: FIRSTNAME
+          value: 'Asif'
+      command: ['sh', '-c', 'echo Hello from Container 1! && sleep 3600']
+  initContainers:
+    - name: my-init-container
+      image: busybox
+      command: ['sh', '-c']
+      args:
+        [
+          'until nslookup myservice.default.svc.cluster.local; do echo waiting for myservice; sleep 2; done;',
+        ]
