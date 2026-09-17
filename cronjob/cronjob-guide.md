@@ -14,7 +14,7 @@ kind: CronJob
 metadata:
   name: hello-cronjob
 spec:
-  schedule: "* * * * *"
+  schedule: '* * * * *'
   jobTemplate:
     spec:
       template:
@@ -91,7 +91,7 @@ The scheduling field in Kubernetes is:
 
 ```yaml
 spec:
-  schedule: "* * * * *"
+  schedule: '* * * * *'
 ```
 
 The value follows the standard cron format:
@@ -132,7 +132,7 @@ This means every minute.
 Example:
 
 ```yaml
-schedule: "0 * * * *"
+schedule: '0 * * * *'
 ```
 
 This runs at minute 0 of every hour.
@@ -149,7 +149,7 @@ This means every hour.
 Example:
 
 ```yaml
-schedule: "*/30 * * * *"
+schedule: '*/30 * * * *'
 ```
 
 This runs every 30 minutes.
@@ -166,7 +166,7 @@ This means every day of the month.
 Example:
 
 ```yaml
-schedule: "0 9 * * *"
+schedule: '0 9 * * *'
 ```
 
 This runs every day at 9:00 AM.
@@ -183,7 +183,7 @@ This means every month.
 Example:
 
 ```yaml
-schedule: "0 0 1 * *"
+schedule: '0 0 1 * *'
 ```
 
 This runs at midnight on the first day of every month.
@@ -200,7 +200,7 @@ This means every day of the week.
 Example:
 
 ```yaml
-schedule: "0 9 * * 1"
+schedule: '0 9 * * 1'
 ```
 
 This runs every Monday at 9:00 AM.
@@ -210,37 +210,37 @@ This runs every Monday at 9:00 AM.
 ### Every minute
 
 ```yaml
-schedule: "* * * * *"
+schedule: '* * * * *'
 ```
 
 ### Every 15 minutes
 
 ```yaml
-schedule: "*/15 * * * *"
+schedule: '*/15 * * * *'
 ```
 
 ### Every hour at minute 30
 
 ```yaml
-schedule: "30 * * * *"
+schedule: '30 * * * *'
 ```
 
 ### Every day at 2:00 AM
 
 ```yaml
-schedule: "0 2 * * *"
+schedule: '0 2 * * *'
 ```
 
 ### Every Monday at 9:00 AM
 
 ```yaml
-schedule: "0 9 * * 1"
+schedule: '0 9 * * 1'
 ```
 
 ### The first day of every month at midnight
 
 ```yaml
-schedule: "0 0 1 * *"
+schedule: '0 0 1 * *'
 ```
 
 ## Important notes
