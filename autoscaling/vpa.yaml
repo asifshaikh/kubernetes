@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cpu-demo
+  template:
+    metadata:
+      labels:
+        app: cpu-demo
+    spec:
+      containers:
+        - name: workload
+          image: registry.k8s.io/hpa-example
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 500m
+              memory: 200Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpu-demo
+spec:
+  selector:
+    app: cpu-demo
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: cpu-demo
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cpu-demo
+  updatePolicy:
+    updateMode: 'Off'
+  resourcePolicy:
+    containerPolicies:
+      - containerName: workload
+        controlledResources: ['cpu', 'memory']
+        minAllowed:
+          cpu: 50m
+          memory: 32Mi
+        maxAllowed:
+          cpu: '1'
+          memory: 1Gi
