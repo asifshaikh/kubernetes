@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: task-configmap
+data:
+  firstname: asif
+  lastname: shaikh
